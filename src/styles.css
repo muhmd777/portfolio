@@ -1,0 +1,181 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-neon-blue: var(--neon-blue);
+  --color-neon-purple: var(--neon-purple);
+  --color-neon-cyan: var(--neon-cyan);
+  --font-mono: var(--font-mono);
+  --font-display: var(--font-display);
+}
+
+:root {
+  --radius: 0.5rem;
+  --background: oklch(0.08 0.02 270);
+  --foreground: oklch(0.95 0.02 250);
+  --card: oklch(0.12 0.03 270 / 60%);
+  --card-foreground: oklch(0.95 0.02 250);
+  --popover: oklch(0.1 0.03 270);
+  --popover-foreground: oklch(0.95 0.02 250);
+  --primary: oklch(0.7 0.22 260);
+  --primary-foreground: oklch(0.08 0.02 270);
+  --secondary: oklch(0.18 0.05 280 / 80%);
+  --secondary-foreground: oklch(0.95 0.02 250);
+  --muted: oklch(0.18 0.04 270 / 60%);
+  --muted-foreground: oklch(0.7 0.04 260);
+  --accent: oklch(0.65 0.25 300);
+  --accent-foreground: oklch(0.08 0.02 270);
+  --destructive: oklch(0.65 0.27 20);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.7 0.22 260 / 25%);
+  --input: oklch(0.18 0.05 270 / 80%);
+  --ring: oklch(0.7 0.22 260);
+
+  --neon-blue: oklch(0.72 0.22 250);
+  --neon-purple: oklch(0.65 0.27 300);
+  --neon-cyan: oklch(0.85 0.18 200);
+
+  --font-display: "Orbitron", "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+
+  --gradient-neon: linear-gradient(135deg, oklch(0.72 0.22 250), oklch(0.65 0.27 300));
+  --gradient-radial: radial-gradient(circle at 50% 0%, oklch(0.7 0.22 260 / 25%), transparent 60%);
+  --shadow-neon: 0 0 20px oklch(0.72 0.22 250 / 50%), 0 0 40px oklch(0.65 0.27 300 / 30%);
+  --shadow-neon-strong: 0 0 30px oklch(0.72 0.22 250 / 80%), 0 0 60px oklch(0.65 0.27 300 / 50%);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: "Inter", system-ui, sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: 0.02em; }
+}
+
+@layer utilities {
+  .font-mono { font-family: var(--font-mono); }
+  .font-display { font-family: var(--font-display); }
+
+  .text-neon {
+    background: var(--gradient-neon);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .glow-text {
+    text-shadow: 0 0 10px oklch(0.72 0.22 250 / 70%), 0 0 20px oklch(0.65 0.27 300 / 50%);
+  }
+
+  .glow-border { box-shadow: var(--shadow-neon); }
+  .glow-border-strong { box-shadow: var(--shadow-neon-strong); }
+
+  .glass {
+    background: oklch(0.12 0.03 270 / 50%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid oklch(0.72 0.22 250 / 20%);
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(oklch(0.72 0.22 250 / 8%) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(0.72 0.22 250 / 8%) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  }
+
+  .scanline::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      transparent 2px,
+      oklch(0.72 0.22 250 / 3%) 3px,
+      transparent 4px
+    );
+    pointer-events: none;
+  }
+}
+
+@keyframes float-up {
+  0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(-10vh) translateX(40px); opacity: 0; }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px oklch(0.72 0.22 250 / 40%), 0 0 40px oklch(0.65 0.27 300 / 20%); }
+  50% { box-shadow: 0 0 30px oklch(0.72 0.22 250 / 70%), 0 0 60px oklch(0.65 0.27 300 / 50%); }
+}
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes scan-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+@keyframes matrix-fall {
+  0% { transform: translateY(-100%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 1px); }
+  40% { transform: translate(2px, -1px); }
+  60% { transform: translate(-1px, -2px); }
+  80% { transform: translate(1px, 2px); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+
+.animate-float-up { animation: float-up linear infinite; }
+.animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+.animate-blink { animation: blink 1s step-end infinite; }
+.animate-scan { animation: scan-line 4s linear infinite; }
+.animate-matrix { animation: matrix-fall linear infinite; }
+.animate-glitch { animation: glitch 0.4s infinite; }
+.animate-fade-up { animation: fade-up 0.8s ease-out both; }
+.animate-spin-slow { animation: spin-slow 20s linear infinite; }
+
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: oklch(0.08 0.02 270); }
+::-webkit-scrollbar-thumb { background: var(--gradient-neon); border-radius: 10px; }
