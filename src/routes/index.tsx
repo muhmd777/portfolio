@@ -588,8 +588,8 @@ function Contact() {
             <div className="space-y-3">
               {[
                 { icon: Mail, label: "Email", value: "mohamed.abdelwahab@protonmail.com", href: "mailto:mohamed.abdelwahab@protonmail.com" },
-                { icon: Github, label: "GitHub", value: "@mohamedabdelwahab", href: "https://github.com" },
-                { icon: Linkedin, label: "LinkedIn", value: "Mohamed Abd Elwahab", href: "https://linkedin.com" },
+                { icon: Github, label: "GitHub", value: "@mohamedabdelwahab",  href: "https://github.com/muhmd777"},
+                { icon: Linkedin, label: "LinkedIn", value: "Mohamed Abd Elwahab", href: "https://www.linkedin.com/in/mohamed-abd-el-wahab-934832237?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
                 { icon: Shield, label: "TryHackMe", value: "tryhackme.com/p/abdelwahab", href: "https://tryhackme.com" },
               ].map((s) => (
                 <a
